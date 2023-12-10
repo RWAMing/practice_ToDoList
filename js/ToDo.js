@@ -174,3 +174,6 @@ window.addEventListener('load',function(){
         }
 
 });
+
+
+// 커밋 어케써 ^^ 제발 푸시해라
