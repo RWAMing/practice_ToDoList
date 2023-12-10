@@ -16,8 +16,6 @@ h1,label,p{font-family: 'Gugi', sans-serif;} /* 주요 텍스트 */
     margin: 0;
     color: #333333;
 }
-
-
 /* 배경 */
 html,body{height: 100%;} /* height */
 #bg{ /* 배경색 */
@@ -30,9 +28,7 @@ html,body{height: 100%;} /* height */
     width: 100%;
     height: 100%;
 }
-
-
-/* 모든 컨텐츠 */
+/* 컨텐츠 프레임 */
 .contents{
     width: 600px;
     margin: 0 auto;
