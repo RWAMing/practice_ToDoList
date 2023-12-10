@@ -1,0 +1,182 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Gugi&family=Noto+Sans+KR:wght@400;500&display=swap');
+
+
+/* reset */
+body,div,h1,label,input{ /* 텍스트 */
+    display: block;
+    font: normal 14px/1.5em 'Noto Sans KR',sans-serif;
+    text-align: center;
+}
+h1,label,p{font-family: 'Gugi', sans-serif;} /* 주요 텍스트 */
+*{ /* 초기화 */
+    outline: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #333333;
+}
+
+
+/* 배경 */
+html,body{height: 100%;} /* height */
+#bg{ /* 배경색 */
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-image: linear-gradient(#d3e4d3,#aaffcc,#c7dbf0);
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 모든 컨텐츠 */
+.contents{
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+
+
+
+/* 제목 */
+.title{
+    font-size: 60px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+
+/* input 컨텐츠 사이즈 */
+.input_wrap{
+    box-sizing: border-box;
+    width: 600px;
+    height: 35px;
+    margin: auto;
+    margin-bottom: 20px;  /* 아래 여백 */
+}
+
+
+/* input 이름 */
+.name_wrap{ /* input 이름 wrap */
+    float: left;
+    width: 75px; /* 크기 */
+}
+.name{ /* input 이름 */
+    box-sizing: border-box;
+    float: right;
+    height: 35px;
+    font-size: 20px;
+    line-height: 35px;
+    padding-right: 10px;
+}
+
+
+/* input 입력 */
+.typeBox_wrap{ /* input 입력칸 wrap */
+    float: right;
+    width: 525px; /* 크기 */
+}
+.typeBox{ /* input 입력칸 */
+    float: left;
+    border: none;
+    border-radius: 10px;
+    width: 485px;
+    height: 35px;
+    text-indent: 1em;
+}
+.typeBox::placeholder{color: #afc4c1;}
+.btn{ /* 버튼 */
+    float: right;
+    background-color: #666666;
+    border: none;
+    border-radius: 10px;
+    width: 35px;
+    height: 35px;
+    color: white;
+    cursor: pointer;
+}
+.btn:hover{background-color: #555555;}
+.btn:active{background-color: #446655;}
+
+
+/* 리스트 */
+.list_wrap{
+    background-color: rgba(255,255,255,0.5);
+    box-sizing: border-box;
+    border-radius: 20px;
+    width: 600px;
+    /* height: 300px; */
+    font-size: 16px;
+    padding: 20px 45px;
+    margin: auto;
+    margin-bottom: 30px; /* 아래 여백 */
+}
+.list_wrap p{
+    color: rgba(0,0,0,0.3);
+    font-family: 'Noto Sans KR',sans-serif;
+    font-weight: 500;
+}
+.list_wrap ul{display: block;} /* ul */
+.list_wrap li{ /* li 추가된 할 일 */
+    clear: both;
+    display: block;
+    height: 40px;
+    color: #444444;
+    font-weight: 500;
+    text-align: left;
+    text-indent: 12px;
+    line-height: 40px;
+}
+.list_style{
+    float: left;
+    display: block;
+    background-color: #446655;
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    text-indent: 0;
+    text-align: right;
+    line-height: 40px;
+    padding: 0;
+    margin: 19px 0 13px 0px;
+    transition: opacity 0.3s, background-color 0.3s;
+}
+.list_wrap li:last-child{margin-bottom: 10px;}
+
+
+
+
+/* 생성 */
+
+
+/* 리스트 */
+
+.btn_mini{ /* li 생성시 '×' 버튼 생성 */
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    color: rgba(0,0,0,0.5);
+    font-family: 'Gugi',sans-serif;
+    line-height: 40px;
+    margin-right: -20px;
+}
+.btn_mini:hover{
+    background-color: transparent;
+    color: rgba(0,0,0,0.7);
+}
+.btn_mini:active{
+    background-color: transparent;
+    color: rgba(0,0,0,1);
+}
+
+.btn_edit{ /* ul 생성시 '편집' 버튼 생성 */
+    height: 10px;
+    font-size: 10px;
+    /* text-align: right; */
+    line-height: 0;
+    transition: all 0.3s;
+}
