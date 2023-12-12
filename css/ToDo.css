@@ -120,6 +120,7 @@ html,body{height: 100%;} /* height */
 .list_wrap li{ /* li 추가된 할 일 */
     clear: both;
     display: block;
+    position: relative;
     height: 40px;
     color: #444444;
     font-weight: 500;
