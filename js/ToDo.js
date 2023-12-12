@@ -58,7 +58,9 @@ window.addEventListener('load',function(){
             return new_btn_edit;
         }
         // edit 클릭시
+            var mode_edit = false;
             function open_edit(){
+                mode_edit = true;
                 show_btn_change_order();
             }
             // list-style 모양 변경
@@ -80,12 +82,12 @@ window.addEventListener('load',function(){
                     }, 300);
                 });
             }
-        // 생성된 btn_edit 인식 - 삭제할 때 필요
+        // btn_edit 인식 (ToDo 없어서 삭제될 때 인식 필요)
             function btn_edit(){
                 return document.querySelector('.btn_edit');
             }
 
-    // li(할일) 만들기
+    // li(할일) 추가
         function add_TD() {
             var new_li_TD = document.createElement('li');
             if(!TD_txt_blank()){
