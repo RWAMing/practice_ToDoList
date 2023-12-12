@@ -60,37 +60,75 @@ window.addEventListener('load',function(){
         // edit 클릭시
             var mode_edit = false;
             function open_edit(){
+                if(mode_edit){
+                    mode_edit = false;
+                    btn_edit().innerText = 'edit';
+                    hide_btn_change_order();
+                    drag_btn_change_order();
+                    return;
+                }
                 mode_edit = true;
+                btn_edit().innerText = 'done';
                 show_btn_change_order();
                 drag_btn_change_order();
             }
+
+        // btn_edit 인식
+            function btn_edit(){
+                return document.querySelector('.btn_edit');
+            }
+            var timer;
             // list-style 모양 변경
                 function show_btn_change_order() {
                     var lists_style = document.querySelectorAll('.list_style');
                     lists_style.forEach(function(list_style) {
-                        list_style.style.opacity='0';
-                        list_style.style.backgroundColor='transparent';
-                        var appear_timer;
-                        appear_timer = setTimeout(function() { // 이동 모드로 변경
+                        list_style.style.opacity = '0';
+                        list_style.style.backgroundColor = 'transparent';
+                        timer = setTimeout(function() { // 이동 모드로 변경
                             list_style.innerHTML = '&equiv;';
                             list_style.style.position = 'relative';
                             list_style.style.right = '7px';
                             list_style.style.height = '40px';
                             list_style.style.margin = '0';
-                            list_style.style.opacity='1';
-                            list_style.style.cursor='pointer';
-                            list_style.style.userSelect='none';
+                            list_style.style.opacity = '1';
+                            list_style.style.cursor = 'pointer';
+                            list_style.style.userSelect = 'none';
                         }, 300);
                     });
                 }
+            // list-style 모양 원래대로
+                function hide_btn_change_order() {
+                    var lists_style = document.querySelectorAll('.list_style');
+                    lists_style.forEach(function(list_style) {
+                        list_style.style.opacity='0';
+                        timer = setTimeout(function() { // 이동 모드로 변경
+                            list_style.innerHTML = '';
+                            list_style.style.position = 'static';
+                            list_style.style.right = '0';
+                            list_style.style.backgroundColor='#446655';
+                            list_style.style.height = '5px';
+                            list_style.style.margin = '19px 0 13px 0px';
+                            list_style.style.opacity = '1';
+                            list_style.style.cursor = 'normal';
+                            list_style.style.userSelect = 'auto';
+                        }, 300);
+                    });
+                }
+            
             // 드래그
-                var lists_style_edit;
                 function drag_btn_change_order() {
-                    lists_style_edit = document.querySelectorAll('.list_wrap ul p');
+                    var lists_style_edit = document.querySelectorAll('.list_style');
                     lists_style_edit.forEach(drag_ready); // 모든 To Do List 드래그 준비
                 }
             // 드래그 이벤트리스너 준비
                 function drag_ready(element_drag){
+
+                    if(mode_edit){
+                        element_drag.addEventListener('mousedown',drag_start);
+                    }else{
+                        element_drag.removeEventListener('mousedown',drag_start);
+                        return;
+                    }
 
                 // 클릭한 인덱스번호 뽑기
                     var drag_li;
@@ -98,8 +136,7 @@ window.addEventListener('load',function(){
                     var clicked_lists;
                     var clicked_index;
                     var clicked_Y;
-
-                    element_drag.addEventListener('mousedown',drag_start);
+                    
 
                 // 드래그 준비
                     function drag_start(element_clicked){
@@ -145,23 +182,21 @@ window.addEventListener('load',function(){
                                 adjust_top--;
                             }else{
                                 drag_li.style.top = dragged_distance-(adjust_top*40)+'px';
+                                console.log('adjust_top');
+                                console.log(adjust_top);
                             }
                         }
 
                     }
                 // 드래그 끝
                     function drag_finish(){
+                        console.log('adjust_top 0');
                         window.removeEventListener('mousemove',drag_move);
                         window.removeEventListener('mouseup',drag_finish);
                         drag_li.style.top ='0px';
                         adjust_top = 0;
                     }
                 }
-
-        // btn_edit 인식 (ToDo 없어서 삭제될 때 인식 필요)
-            function btn_edit(){
-                return document.querySelector('.btn_edit');
-            }
 
     // li(할일) 추가
         function add_TD() {
