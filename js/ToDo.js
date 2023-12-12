@@ -83,7 +83,7 @@ window.addEventListener('load',function(){
                         }, 300);
                     });
                 }
-            // list-style 드래그
+            // 드래그
                 var lists_style_edit;
                 function drag_btn_change_order() {
                     lists_style_edit = document.querySelectorAll('.list_wrap ul p');
@@ -91,29 +91,82 @@ window.addEventListener('load',function(){
                 }
             // 드래그 이벤트리스너 준비
                 function drag_ready(element_drag){
+
+                // 클릭한 인덱스번호 뽑기
+                    var drag_li = element_drag.closest('li');
+                    var upper_ul = element_drag.closest('ul');
+                    var clicked_lists = Array.from(upper_ul.getElementsByTagName('li'));
+                    var clicked_index = clicked_lists.indexOf(drag_li);
+
                     element_drag.addEventListener('mousedown',drag_start);
                     window.addEventListener('mouseup',drag_finish);
                     var clicked_Y;
-                    var drag_li = element_drag.closest('li');
                 // 드래그 준비
                     function drag_start(element_drag){
                         clicked_Y = element_drag.clientY;
                         window.addEventListener('mousemove',drag_move);
                     }
                 // 드래그 중
+                    var move_unit = 0;
                     function drag_move (view){
+                        
+                    //위치 이동
                         var dragged_Y = view.clientY;
                         var dragged_distance = dragged_Y-clicked_Y;
-                        var ul_top_Y = document.querySelector('ul').getBoundingClientRect().top;
-                        var ul_bottom_Y = document.querySelector('ul').getBoundingClientRect().bottom;
-                        if(dragged_Y>=ul_top_Y+30&&dragged_Y<=ul_bottom_Y-15){ // ul 뚫지 못하게
-                            drag_li.style.top = dragged_distance+'px';
+                        var ul_top_Y = document.querySelector('ul').getBoundingClientRect().top+31;
+                        var ul_bottom_Y = document.querySelector('ul').getBoundingClientRect().bottom-19;
+
+                    // 순서 변경
+                        var now_lists = Array.from(upper_ul.getElementsByTagName('li'));
+                        var now_index = now_lists.indexOf(element_drag.closest('li'));
+                        var prev_index = now_index-1;
+                        var next_index = now_index+1;
+                        var unit = 20+now_index*40-clicked_index*40;
+                        // console.log(unit);
+
+                        
+                        if(dragged_Y>=ul_top_Y&&dragged_Y<=ul_bottom_Y) { // ul 뚫지 못하게
+                            if(dragged_distance>=unit){ // 아래로 반칸 + 1칸단위 이상
+                                if(now_lists.length-1<=now_index){ // 마지막칸에서는 움직임X
+                                    return false;
+                                }
+                                now_lists[next_index].insertAdjacentElement('afterend',drag_li);
+                                move_unit++;
+                                console.log(move_unit);
+                            }else{
+                                drag_li.style.top = dragged_distance-(move_unit*40)+'px';
+                            }
                         }
+                        
+
+                        // ul_top_Y 기준
+                        // 
+
+                        // dragged_distance 기준
+                        //  40단위 +20 = 20, 60, 100...
+                            // ex) 2번째를 4번째로 옮기려고 함
+                            // 현재 index번호 1
+                            
+                            // dragged_distance 20미만 < (20 + 40*인덱스1 - 40*클릭인덱스1 = 60)
+                                // 변화X
+                            // dragged_distance 20이상 >= (20 + 40*인덱스1 = 60)
+                                // 인덱스2로 이동
+                            // dragged_discance 60이상 >= (20 + 40*인덱스2 = 100)
+                                // 인덱스3로 이동
+
+
+                        // -40단위 -20 = -20, -60, -100...
+
+
+                        // li의 top 기준 (근데 바뀔때마다 -+40씩 넣어야함)
+                        //  40단위 +20 = 20, 60, 100...
+                        // -40단위 -20 = -20, -60, -100...
                     }
                 // 드래그 끝
                     function drag_finish(){
                         window.removeEventListener('mousemove',drag_move);
                         drag_li.style.top ='0px';
+                        move_unit = 0;
                     }
                 }
 
@@ -183,7 +236,6 @@ window.addEventListener('load',function(){
                 typeBox_TD.placeholder = random_TD_PH_ex(); // placeholder변경
                 if(mode_edit){
                     var new_edit = document.querySelector('.list_wrap ul li:last-of-type p');
-                    console.log(new_edit);
                     new_edit.addEventListener('mousedown',drag_ready(new_edit));
                 }
             }
