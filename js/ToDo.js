@@ -178,7 +178,7 @@ function add_ToDo() { // To Do 추가
     }
     document.querySelector('.list_wrap ul').append(add_TD()); // new li
     typeBox_TD.value = ''; // 기존 입력내용 삭제
-    typeBox_TD.placeholder = random_TD_PH_ex(); // placeholder변경
+    typeBox_TD.placeholder = TD_PH_ex[random_10()]; // placeholder변경
     if (mode_edit) {
         const new_edit = document.querySelector('.list_wrap ul li:last-of-type p');
         new_edit.addEventListener('mousedown', drag_start);
@@ -205,12 +205,9 @@ function random_10() { // 랜덤 index번호 (0~9)
         return 9;
     } else { return i; }
 }
-function random_TD_PH_ex() { // 랜덤 placeholder
-    return TD_PH_ex[random_10()];
-}
 
 // 처음 등장
-typeBox_TD.placeholder = random_TD_PH_ex();
+typeBox_TD.placeholder = TD_PH_ex[random_10()];;
 
 // focus - hide
 typeBox_TD.addEventListener('focus', hide_PH);
@@ -221,5 +218,5 @@ function hide_PH() {
 // blur - show(random)
 typeBox_TD.addEventListener('blur', show_PH);
 function show_PH() {
-    typeBox_TD.placeholder = random_TD_PH_ex();
+    typeBox_TD.placeholder = TD_PH_ex[random_10()];;
 }
