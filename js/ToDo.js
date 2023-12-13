@@ -17,23 +17,19 @@ btn_edit.addEventListener('click', open_edit) // edit 클릭시
 let mode_edit = false;
 function open_edit() { // btn_edit.addEventListener('click', open_edit)
     if (mode_edit) {
-        console.log('mode_edit false')
         mode_edit = false;
         btn_edit.innerText = 'edit';
         hide_btn_change_order();
-        drag_btn_change_order();
-        return;
+    }else{
+        mode_edit = true;
+        btn_edit.innerText = 'done';
+        show_btn_change_order();
     }
-    console.log('mode_edit true')
-    mode_edit = true;
-    btn_edit.innerText = 'done';
-    show_btn_change_order();
     drag_btn_change_order();
 }
 
 // basic style -> edit
 function show_btn_change_order() {
-    console.log('eidt show')
     const lists_style = document.querySelectorAll('.list_style');
     lists_style.forEach(function (list_style) {
         list_style.style.opacity = '0';
@@ -46,7 +42,6 @@ function show_btn_change_order() {
 }
 // edit -> basic style
 function hide_btn_change_order() {
-    console.log('eidt hide')
     const lists_style = document.querySelectorAll('.list_style');
     lists_style.forEach(function (list_style) {
         list_style.style.opacity = '0';
@@ -60,22 +55,15 @@ function hide_btn_change_order() {
 
 // 드래그
 function drag_btn_change_order() {
-    console.log('drag ready')
     const lists_style_edit = document.querySelectorAll('.list_style');
-    console.log(lists_style_edit)
     for (let i = 0; i < lists_style_edit.length; i++) {
         if (mode_edit) {
             lists_style_edit[i].addEventListener('mousedown', drag_start);
-            console.log('add')
         } else {
             lists_style_edit[i].removeEventListener('mousedown', drag_start);
-            console.log('remove')
-            return;
         }
     }
 }
-
-
 // 드래그 이벤트리스너
 
 // 클릭한 인덱스번호 뽑기
@@ -89,7 +77,6 @@ let clicked_Y;
 // 드래그 준비
 function drag_start(list_clicked) {
     clicked_li = list_clicked.target; // 여러 요소에 동일한 이벤트 핸들러를 적용할 때, 각 요소마다 발생한 이벤트의 대상이 무엇인지 알아야 하므로 .target 사용
-    console.log(clicked_li);
     clicked_Y = list_clicked.clientY;
     window.addEventListener('mousemove', drag_move);
     window.addEventListener('mouseup', drag_finish);
@@ -132,15 +119,11 @@ function drag_move(view) {
             adjust_top--;
         } else {
             drag_li.style.top = dragged_distance - (adjust_top * 40) + 'px';
-            console.log('adjust_top');
-            console.log(adjust_top);
         }
     }
-
 }
 // 드래그 끝
 function drag_finish() {
-    console.log('adjust_top 0');
     window.removeEventListener('mousemove', drag_move);
     window.removeEventListener('mouseup', drag_finish);
     drag_li.style.top = '0px';
