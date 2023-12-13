@@ -129,6 +129,45 @@ html,body{height: 100%;} /* height */
     line-height: 40px;
 }
 
+.list_wrap li:last-child{margin-bottom: 10px;}
+
+
+
+
+/* 생성 */
+
+
+ /* '편집' 버튼 (숨김) */
+.btn_edit{
+    display: none;
+    height: 10px;
+    font-size: 10px;
+    line-height: 0;
+    transition: all 0.3s;
+}
+.btn_edit_show{display: block;} /* '편집' 버튼 보여주기 */
+
+
+ /* li 생성시 '×' 버튼 생성 */
+.btn_mini{
+    background-color: transparent;
+    width: 20px;
+    height: 20px;
+    color: rgba(0,0,0,0.5);
+    font-family: 'Gugi',sans-serif;
+    line-height: 20px;
+    margin: 5px 0;
+}
+.btn_mini:hover{
+    background-color: transparent;
+    color: rgba(0,0,0,0.7);
+}
+.btn_mini:active{
+    background-color: transparent;
+    color: rgba(0,0,0,1);
+}
+
+/* list style - basic & edit */
 .list_style{
     float: left;
     display: block;
@@ -155,40 +194,3 @@ html,body{height: 100%;} /* height */
     cursor: pointer;
     user-select: none;
 }
-
-.list_wrap li:last-child{margin-bottom: 10px;}
-
-
-
-
-/* 생성 */
-
-
-/* 리스트 */
-
-.btn_mini{ /* li 생성시 '×' 버튼 생성 */
-    background-color: transparent;
-    width: 20px;
-    height: 20px;
-    color: rgba(0,0,0,0.5);
-    font-family: 'Gugi',sans-serif;
-    line-height: 20px;
-    margin: 5px 0;
-}
-.btn_mini:hover{
-    background-color: transparent;
-    color: rgba(0,0,0,0.7);
-}
-.btn_mini:active{
-    background-color: transparent;
-    color: rgba(0,0,0,1);
-}
-
-.btn_edit{ /* '편집' 버튼 (숨김) */
-    display: none;
-    height: 10px;
-    font-size: 10px;
-    line-height: 0;
-    transition: all 0.3s;
-}
-.btn_edit_show{display: block;} /* '편집' 버튼 보여주기 */

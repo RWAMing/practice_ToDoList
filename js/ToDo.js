@@ -1,5 +1,3 @@
-// variables & return value
-
 // 할 일 입력란
 const typeBox_TD = document.querySelector('#typeBox_Todo'); // input[type="text"] 입력칸
 const btn_add = document.querySelector('#btn_add'); // btn
@@ -10,14 +8,9 @@ const listBox = document.querySelectorAll('.list_wrap')[0]; // 리스트 div
 const TD_guide = document.querySelector('.list_wrap p'); // 리스트 내 설명 p태그
 
 
-// ul, edit버튼 만들기
+// ul, edit버튼
 const new_ul = document.createElement('ul'); // create ul
-const btn_edit = document.querySelector('.btn_edit');
-
-
-
-
-// function
+const btn_edit = document.querySelector('.btn_edit'); // edit버튼
 
 btn_edit.addEventListener('click', open_edit) // edit 클릭시
 
@@ -70,7 +63,7 @@ function drag_btn_change_order() {
     console.log('drag ready')
     const lists_style_edit = document.querySelectorAll('.list_style');
     console.log(lists_style_edit)
-    for (let i= 0 ; i < lists_style_edit.length; i++) {
+    for (let i = 0; i < lists_style_edit.length; i++) {
         if (mode_edit) {
             lists_style_edit[i].addEventListener('mousedown', drag_start);
             console.log('add')
