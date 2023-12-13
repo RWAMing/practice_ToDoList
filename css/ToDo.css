@@ -129,35 +129,6 @@ html,body{height: 100%;} /* height */
     line-height: 40px;
 }
 
-@keyframes mode_edit {
-    0%{
-        float: left;
-        display: block;
-        position: static;
-        background-color: #446655;
-        border-radius: 50%;
-        width: 5px;
-        height: 5px;
-        text-indent: 0;
-        text-align: right;
-        line-height: 40px;
-        padding: 0;
-        margin: 19px 0 13px 0px;
-        cursor: auto;
-        user-select: auto;
-    }
-    50%{opacity: 0;}
-    100%{
-        position: relative;
-        right: 7px;
-        height: 40px;
-        background-color: transparent;
-        margin: 0;
-        cursor: pointer;
-        user-select: none;
-    }
-}
-
 .list_style{
     float: left;
     display: block;
@@ -173,17 +144,16 @@ html,body{height: 100%;} /* height */
     margin: 19px 0 13px 0px;
     cursor: auto;
     user-select: auto;
-    animation: mode_edit 0.5s forwards;
-    animation-play-state: paused;
+    transition: opacity 0.5s;
 }
-.edit_style_show{
-    animation-play-state: running;
-    animation-direction: normal;
-}
-.ani_reset{animation-play-state: paused;}
-.edit_style_hide{
-    animation-play-state: running;
-    animation-direction: reverse;
+.edit_style{
+    position: relative;
+    right: 7px;
+    height: 40px;
+    background-color: transparent;
+    margin: 0;
+    cursor: pointer;
+    user-select: none;
 }
 
 .list_wrap li:last-child{margin-bottom: 10px;}
@@ -198,12 +168,12 @@ html,body{height: 100%;} /* height */
 
 .btn_mini{ /* li 생성시 '×' 버튼 생성 */
     background-color: transparent;
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     color: rgba(0,0,0,0.5);
     font-family: 'Gugi',sans-serif;
-    line-height: 40px;
-    margin-right: -20px;
+    line-height: 20px;
+    margin: 5px 0;
 }
 .btn_mini:hover{
     background-color: transparent;
